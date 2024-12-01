@@ -24,7 +24,7 @@
     }
   }
   
-  .fade-in-up {
+  /* .fade-in-up {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease-in-out, transform 1s ease-in-out;
@@ -45,6 +45,17 @@
     opacity: 1;
     transform: translateY(0);
   }
+   */
+   .fade-in {
+    opacity: 0;
+    transform: translateX(-20px); /* Adjust based on effect */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+  
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
   
 
   @font-face {
@@ -61,27 +72,13 @@
     font-style: normal;
   }
 
-  /* Custom styles for the carousel dots */
-  .custom-dot {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: transparent; /* No color */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: 2px solid #ccc; /* Circle border color */
-    color: #ccc;
+  .font-regular {
+    font-family: 'K2D';
+    font-weight: normal;
   }
   
-  .custom-dot.slick-active {
-    background-color: blue; /* Blue color when active */
-    border-color: blue; /* Blue border when active */
-    color: white;
+  /* Class for Bold font */
+  .font-bold {
+    font-family: 'K2D';
+    font-weight: bold;
   }
-  
-
-  
-  /* Additional weights and styles if available */
-  

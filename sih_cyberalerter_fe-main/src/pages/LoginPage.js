@@ -22,7 +22,10 @@ const LoginPage = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    dots: true, 
+    arrows: false, 
   };
+  
 
   return (
     <div className="min-h-screen flex flex-col bg-scan-pattern bg-cover bg-center">

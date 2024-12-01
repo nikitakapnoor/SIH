@@ -15,8 +15,8 @@ const Sidebar = () => {
   return (
     <div
       className={`fixed top-0 left-0 h-full ${
-        isHovered ? 'w-40' : 'w-16'
-      } bg-gray-900 text-white z-50 transition-all duration-300 shadow-lg`}
+        isHovered ? 'w-40 shadow-lg' : 'w-16'
+      } bg-gray-900 text-white z-50 transition-all duration-300`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -57,7 +57,7 @@ const Sidebar = () => {
         {/* User at the bottom */}
         <Link
           to="/user"
-          className={`text-lg py-2 px-3 mx-2 rounded w-auto mt-auto ${
+          className={`text-lg py-2 px-3 mx-2 rounded w-auto mt-auto mb-2 ${
             isActive('/user') ? 'bg-blue-500 text-white' : 'hover:bg-blue-500 hover:text-white'
           } transition duration-300 flex items-center`}
         >

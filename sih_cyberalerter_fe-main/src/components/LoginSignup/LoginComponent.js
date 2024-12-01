@@ -39,35 +39,44 @@ const LoginComponent = ({ toggleForm }) => {
   // const emailIcon = email ? emailBlue : emailBlue; 
   // const passwordIcon = password ? passwordBlue:passwordBlack;
   return (
-    <div className="flex items-center justify-center min-h-screen font-k2d">
+    <div className="flex items-center justify-center min-h-screen font-k2d ">
       <div className="bg-white shadow-lg rounded-lg p-5 w-full h-96">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4 mt-4" style={{fontFamily:'K2D', fontSize: '32px' }}>Login</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4" style={{fontFamily:'K2D', fontSize: '32px' }}>Login</h2>
         <form onSubmit={handleLogin} className="space-y-4 mt-8">
-          <div className="flex flex-col" style={{ fontFamily:'K2D' , fontSize: '15px' }}>
-          <img src={email?emailBlue:emailBlack} alt="Password Icon" className="absolute  transform -translate-y-1/2 w-5 h-5" 
-            style={{ left: '24%', top: '42%' }}  />
-            {/* <img src={emailIcon} alt="Email Icon" className="absolute left-3 top-3 w-5 h-5" />  */}
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-              className="pl-10 py-2 pr-4 border mt-5 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-black "
-            />
-          </div>
-          <div className="flex flex-col" style={{ fontFamily:'K2D' , fontSize: '15px' }}>
-          <img src={password ? passwordBlue : passwordBlack} alt="Password Icon" className="absolute left-1/4 top-1/2 transform -translate-y-1/2 w-5 h-5"
-          style={{ left: '24%', bottom: '35%' }} />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
-              className="py-2 pl-10 pr-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-black "
-            />
-          </div>
+        <div className="flex items-center mt-5 border border-gray-300 rounded-xl focus-within:ring-2 focus-within:ring-black" style={{ fontFamily: 'K2D', fontSize: '15px' }}>
+  <img
+    src={email ? emailBlue : emailBlack}
+    alt="Email Icon"
+    className="w-5 h-5 ml-3"
+  />
+  <input
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    placeholder="Enter your email"
+    required
+    className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-xl"
+  />
+</div>
+<div
+  className="flex items-center mt-5 border border-gray-300 rounded-xl focus-within:ring-2 focus-within:ring-black"
+  style={{ fontFamily: 'K2D', fontSize: '15px' }}
+>
+  <img
+    src={password ? passwordBlue : passwordBlack}
+    alt="Password Icon"
+    className="w-5 h-5 ml-3"
+  />
+  <input
+    type="password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="Enter your password"
+    required
+    className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-xl"
+  />
+</div>
+
           {error && (
             <div className="text-sm text-red-500 mt-2" style={{ fontFamily:'K2D' , fontSize: '15px' }}>
               Incorrect email or password. Please check.
@@ -76,8 +85,8 @@ const LoginComponent = ({ toggleForm }) => {
 <div   style={{ left: '24%', bottom: '35%' }} >
           <button
             type="submit"
-            className="w-full text-white font-medium py-2 mt-8 rounded-xl transition duration-300"
-            style={{backgroundColor: '#0D153C', fontSize: '15px' }}
+            className="w-full text-white font-medium py-2 mt-8 rounded-xl transition duration-300 hover:bg-[#3348F2] bg-[#0D153C]"
+            style={{ fontSize: '15px' }}
           >
             Login
           </button>

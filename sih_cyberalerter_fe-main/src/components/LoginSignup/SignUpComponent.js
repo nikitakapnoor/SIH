@@ -52,66 +52,68 @@ const SignUpComponent = ({ toggleForm }) => {
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6" style={{ fontFamily:'K2D' , fontSize: '32px' }}>Create an Account</h2>
         <form onSubmit={handleSignUp} className="space-y-4">
-          <div className="flex flex-col">
-          <img src={username ? userBlue : userBlack} alt="Password Icon" className="absolute transform -translate-y-1/2 w-5 h-5"
-             style={{ left: '26%', top: '35%' }} />
-            <input
-            style={{ fontFamily:'K2D' , fontSize: '15px' }}
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Choose a username"
-              required
-              className="pl-10 py-2 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black "
-            />
-          </div>
-          <div className="flex flex-col">
-          <img src={email? emailBlue:emailBlack} alt="Password Icon" className="absolute  transform -translate-y-1/2 w-5 h-5"
-             style={{ left: '26%', top: '43%' }} />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-              style={{ fontFamily:'K2D' , fontSize: '15px' }}
-              className="pl-10 py-2 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black "
-            />
-          </div>
-          <div className="flex flex-col">
-          <img src={password ? passwordBlue : passwordBlack} alt="Password Icon" className="absolute transform -translate-y-1/2 w-5 h-5"
-          style={{ left: '26%', bottom: '45%' }} />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
-              style={{ fontFamily:'K2D' , fontSize: '15px' }}
-              className="pl-10 py-2 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black "
-            />
-          </div>
-          <div className="flex flex-col">
-          <img src={confirmPassword ? passwordBlue : passwordBlack} alt="Password Icon" className="absolute transform -translate-y-1/2 w-5 h-5" 
-          style={{ left: '26%', bottom: '37%' }} />
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
-              required
-              style={{ fontFamily:'K2D' , fontSize: '15px' }}
-              className="pl-10 py-2 pr-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black "
-            />
-          </div>
+        <div className="flex flex-col space-y-4" style={{ fontFamily: 'K2D', fontSize: '15px' }}>
+  {/* Username Input */}
+  <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
+    <img src={username ? userBlue : userBlack} alt="Username Icon" className="w-5 h-5 ml-3" />
+    <input
+      type="text"
+      value={username}
+      onChange={(e) => setUsername(e.target.value)}
+      placeholder="Choose a username"
+      required
+      className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
+    />
+  </div>
+
+  {/* Email Input */}
+  <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
+    <img src={email ? emailBlue : emailBlack} alt="Email Icon" className="w-5 h-5 ml-3" />
+    <input
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder="Enter your email"
+      required
+      className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
+    />
+  </div>
+
+  {/* Password Input */}
+  <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
+    <img src={password ? passwordBlue : passwordBlack} alt="Password Icon" className="w-5 h-5 ml-3" />
+    <input
+      type="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      placeholder="Enter your password"
+      required
+      className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
+    />
+  </div>
+
+  {/* Confirm Password Input */}
+  <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
+    <img src={confirmPassword ? passwordBlue : passwordBlack} alt="Confirm Password Icon" className="w-5 h-5 ml-3" />
+    <input
+      type="password"
+      value={confirmPassword}
+      onChange={(e) => setConfirmPassword(e.target.value)}
+      placeholder="Confirm your password"
+      required
+      className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
+    />
+  </div>
+</div>
+
           {error && (
             <div className="text-sm text-red-500 mt-2">
               {error}
             </div>
           )}
           <button
-            type="submit" style={{ backgroundColor: '#0D153C', fontFamily:'K2D' , fontSize: '15px' }}
-            className="w-full text-white font-medium py-2 rounded-lg transition duration-300"
+            type="submit" style={{ fontFamily:'K2D' , fontSize: '15px' }}
+            className="w-full text-white font-medium py-2 rounded-lg transition duration-300 hover:bg-[#3348F2] bg-[#0D153C]"
           >
             Sign Up
           </button>
