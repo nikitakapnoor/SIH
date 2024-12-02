@@ -1,11 +1,14 @@
 // DashboardPage.js
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../components/sidebar';
 import Header from '../components/Header';
 import PreviewComponent from '../components/DashboardPage';
 import HistoryComponent from '../components/History';
+import { useEffect } from 'react';
+import { getAPI } from '../helpers/apiRequests';
 
 const DashboardPage = () => {
+
   return (
     <div className="flex h-screen">
       {/* Sidebar on the left */}

@@ -5,11 +5,12 @@ import { login } from '../../data/EndPoints';
 import emailBlack from '../../images/email-black.svg';
 import emailBlue from '../../images/email-blue.svg'; 
 import passwordBlack from '../../images/password-black.svg';
- import passwordBlue from '../../images/password-blue.svg';
+import passwordBlue from '../../images/password-blue.svg';
+import Cookies from 'js-cookie';
 
 const LoginComponent = ({ toggleForm }) => {
-  const [email, setEmail] = useState("testuserApek@example.com");
-  const [password, setPassword] = useState("ApekCh");
+  const [email, setEmail] = useState("ac@gmail.com");
+  const [password, setPassword] = useState("acac");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
@@ -22,10 +23,13 @@ const LoginComponent = ({ toggleForm }) => {
         email: email,
         password: password,
       },
+      addAuth:false,
       callback: (response) => {
         if (response.status === 200) {
           // Handle success, e.g., display a success message
           console.log(response.data.message);
+          Cookies.set("userId",response.data.data.userId);
+          Cookies.set("token",response.data.data.token);
           navigate('/dashboard');
         } else {
           // Handle error response

@@ -30,7 +30,9 @@ const SignUpComponent = ({ toggleForm }) => {
         username: username,
         email: email,
         password: password,
+        subscriptionPlan:"Free"
       },
+      addAuth:false,
       callback: (response) => {
         if (response.status === 201) {
           // Handle success

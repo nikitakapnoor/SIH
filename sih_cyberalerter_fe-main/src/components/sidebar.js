@@ -5,13 +5,37 @@ import Scanner from '../images/iscanner.svg';
 import Report from '../images/report.svg';
 import user from '../images/user-blue.svg';
 import logo from '../images/logo.svg';
+import { postAPI } from '../helpers/apiRequests';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const location = useLocation(); // Get the current location (URL)
-
+  const navigate = useNavigate();
+  
   // Helper function to check if the link is active
   const isActive = (path) => location.pathname === path;
-
+const logout=()=>{
+  
+  postAPI({
+    endpoint: "/Users/logout",
+    params: {
+      token: Cookies.get('token'),
+    },
+    callback: (response) => {
+      if (response.status === 200) {
+        // Handle success, e.g., display a success messa
+        
+        Cookies.remove('token');
+        Cookies.remove('userId');
+        navigate('/');
+      } else {
+        // Handle error response
+        console.error(response.data.message);
+      }
+    },
+  });
+}
   return (
     <div
       className={`fixed top-0 left-0 h-full ${
@@ -55,6 +79,7 @@ const Sidebar = () => {
           </Link>
         </div>
         {/* User at the bottom */}
+        <div onClick={logout}>logout</div>
         <Link
           to="/user"
           className={`text-lg py-2 px-3 mx-2 rounded w-auto mt-auto mb-2 ${

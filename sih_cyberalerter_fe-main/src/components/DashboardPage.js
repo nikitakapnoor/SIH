@@ -1,7 +1,9 @@
 // PreviewComponent.js
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { Upgrade } from '../helpers/apiRequests';
+import Cookies from 'js-cookie';
 const PreviewComponent = () => {
+
   return (
     <div className="grid grid-cols-2 gap-4">
       {/* First Division (Card) */}
@@ -26,6 +28,7 @@ const PreviewComponent = () => {
         </div>
         <div className="bg-white shadow-md rounded-lg p-6">
           <h3><b>Subscription plan</b></h3>
+          <button onClick={Upgrade} className='p-2 text-green-400 border-2 border-green-400 rounded-lg'> upgrade</button>
           <p>Details about Card 5.</p>
         </div>
       </div>
