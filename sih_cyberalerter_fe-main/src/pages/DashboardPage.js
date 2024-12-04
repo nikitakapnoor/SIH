@@ -10,7 +10,8 @@ import Cookies from 'js-cookie';
 
 const DashboardPage = () => {
   const [qucikScanData, setQucikScanData] = useState("")
-
+  const storedData = localStorage.getItem("userData");
+  let userData = storedData ? JSON.parse(storedData) : null;
   useEffect(()=>{
     getAPI({
       endpoint: "/users/user_profile",
@@ -24,7 +25,7 @@ const DashboardPage = () => {
       },
     });
     getQuickScanHistory()
-  },[])
+  },[userData])
 
   const getQuickScanHistory=()=>{
     getAPI({
