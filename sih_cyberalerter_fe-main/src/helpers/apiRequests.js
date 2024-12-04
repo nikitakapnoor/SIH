@@ -61,6 +61,20 @@ export const postAPI = ({
   };
   
 export const Upgrade =()=>{
+
+const storedData = localStorage.getItem("userData");
+
+let userData = storedData ? JSON.parse(storedData) : null;
+
+if (userData) {
+  userData.subscriptionPlan = "Pro"; 
+
+  localStorage.setItem("userData", JSON.stringify(userData));
+  console.log("Updated to pro,", userData);
+} else {
+  console.error("No userData found in localStorage");
+}
+
    const userId= Cookies.get("userId")
   postAPI({
     endpoint: "/Users/upgrade",

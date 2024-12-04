@@ -21,7 +21,7 @@ const QuickScan = () => {
       params: {
         userId:   Cookies.get('userId'),
         productName: productName,
-        productVersion: productVersion?? null,
+        productVersion: productVersion ?? null,  
         cveId: cveId ?? null
       },
       callback: (response) => {

@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react';
-
-const HistoryComponent = () => {
+import React, { useState } from 'react';
+const HistoryComponent = ({qucikScanData}) => {
   const [activeOption, setActiveOption] = useState('monitorScan'); // State for active option
   const [monitorScans, setMonitorScans] = useState([]); // State for monitor scan data
   const [selectedScan, setSelectedScan] = useState(null); // State for selected scan
 
-  // Fetch data from the database (replace with actual data fetching logic)
-  useEffect(() => {
-    // Example static data, replace with data fetched from the database
-    const fetchData = async () => {
-      const data = [
-        { productName: 'Product 1', lastScanDate: '2024-01-01', details: 'Details of Product 1' },
-        { productName: 'Product 2', lastScanDate: '2024-02-01', details: 'Details of Product 2' },
-        { productName: 'Product 3', lastScanDate: '2024-03-01', details: 'Details of Product 3' },
-      ];
-      setMonitorScans(data);
-      setSelectedScan(data[0]);
-    };
-    fetchData();
-  }, []);
+
+  console.log("[qs] history",qucikScanData);
 
   // View button handler 
   const handleView = (scan) =>
@@ -101,31 +88,8 @@ const HistoryComponent = () => {
       {activeOption === 'otherHistory' && (
         <div>
           <div className="bg-white p-6 shadow-md rounded-lg">
-            <h4><b>Scan History</b></h4>
-            <table className="min-w-full mt-4">
-              <thead>
-                <tr>
-                  <th className="px-4 py-2">Product Name</th>
-                  <th className="px-4 py-2">Last Scan Date</th>
-                  <th className="px-4 py-2">View</th>
-                  <th className="px-4 py-2">Download</th>
-                </tr>
-              </thead>
-              <tbody>
-                {monitorScans.map((scan, index) => (
-                  <tr key={index} className="bg-gray-100 border-b hover:bg-gray-200 rounded-lg">
-                    <td className="px-4 py-2">{scan.productName}</td>
-                    <td className="px-4 py-2">{scan.lastScanDate}</td>
-                    <td className="px-4 py-2">
-                      <button onClick={() => handleView(scan)} className="bg-blue-500 text-white px-2 py-1 rounded-lg">View</button>
-                    </td>
-                    <td className="px-4 py-2">
-                      <button onClick={() => handleDownload(scan)} className="bg-green-500 text-white px-2 py-1 rounded-lg">Download</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <h4><b>Quick Scan History</b></h4>
+            <div>{JSON.stringify(qucikScanData, null, 2)}</div>
           </div>
         </div>
       )}

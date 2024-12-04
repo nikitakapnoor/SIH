@@ -6,9 +6,44 @@ import PreviewComponent from '../components/DashboardPage';
 import HistoryComponent from '../components/History';
 import { useEffect } from 'react';
 import { getAPI } from '../helpers/apiRequests';
+import Cookies from 'js-cookie';
 
 const DashboardPage = () => {
+  const [qucikScanData, setQucikScanData] = useState("")
 
+  useEffect(()=>{
+    getAPI({
+      endpoint: "/users/user_profile",
+      callback: (response) => {
+        if (response.status === 200) {
+            console.log("[a] ", response.data.data)
+            localStorage.setItem("userData", JSON.stringify(response.data.data));
+        } else {
+          console.error(response.data.message);
+        }
+      },
+    });
+    getQuickScanHistory()
+  },[])
+
+  const getQuickScanHistory=()=>{
+    getAPI({
+    endpoint: "/quickscan/quickscan_dashboard",
+    params:{ 
+       userId: Cookies.get('userId')
+    },
+    callback: (response) => {
+      if (response.status === 200) {
+        setQucikScanData(response.data.data)
+      } else {
+        // Handle error response
+        console.error(response.data.message);
+      }
+    },
+  });
+  }
+
+    
   return (
     <div className="flex h-screen">
       {/* Sidebar on the left */}
@@ -23,12 +58,12 @@ const DashboardPage = () => {
         <div className="flex-1 mt-10 p-6 overflow-auto">
           {/* Preview Section */}
           <div className="mt-8">
-            <PreviewComponent />
+            <PreviewComponent qucikScanData={qucikScanData.dashboard}  />
           </div>
 
           {/* History Section */}
           <div className="mt-8">
-            <HistoryComponent />
+            <HistoryComponent  qucikScanData={qucikScanData.scansHistory} />
           </div>
         </div>
       </div>

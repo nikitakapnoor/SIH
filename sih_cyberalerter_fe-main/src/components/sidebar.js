@@ -25,7 +25,7 @@ const logout=()=>{
     callback: (response) => {
       if (response.status === 200) {
         // Handle success, e.g., display a success messa
-        
+        localStorage.removeItem("userData");
         Cookies.remove('token');
         Cookies.remove('userId');
         navigate('/');
