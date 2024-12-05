@@ -44,7 +44,6 @@ const DashboardPage = () => {
   });
   }
 
-    
   return (
     <div className="flex h-screen">
       {/* Sidebar on the left */}
