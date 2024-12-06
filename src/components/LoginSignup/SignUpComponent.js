@@ -8,6 +8,8 @@ import userBlue from '../../images/user-blue.svg';
 import userBlack from '../../images/user-black.svg'; 
 import passwordBlack from '../../images/password-black.svg';
  import passwordBlue from '../../images/password-blue.svg';
+ import Eyeo from '../../images/blueeye.svg';
+import Eyec from '../../images/blackeye.svg';
 
 const SignUpComponent = ({ toggleForm }) => {
   const [username, setUsername] = useState('');
@@ -15,11 +17,48 @@ const SignUpComponent = ({ toggleForm }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [usernameError, setUsernameError] = useState(''); 
+  const [passwordError, setPasswordError] = useState(''); 
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
+  const togglePasswordVisibility = (setState) => {
+    setState(prevState => !prevState);
+  };
+
+  const validateUsername = () => {
+    const regex = /^[A-Za-z][A-Za-z0-9_]*$/;
+    if (!regex.test(username)) {
+      setUsernameError('Username must start with an alphabet and contain no special characters at the start.');
+    } else {
+      setUsernameError('');
+    }
+  };
+
+  const validatePassword = () => {
+    const regex = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!regex.test(password)) {
+      setPasswordError('Password must be at least 8 characters long and contain at least one special character.');
+    } else {
+      setPasswordError('');
+    }
+  };
+
+  const validateConfirmPassword = () => {
+    if (password !== confirmPassword) {
+      setConfirmPasswordError('Passwords do not match.');
+    } else {
+      setConfirmPasswordError('');
+    }
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    validateUsername();
+    validatePassword();
+    validateConfirmPassword();
+    if (usernameError || passwordError || confirmPasswordError){
       setError("Passwords don't match");
       return;
     }
@@ -62,11 +101,18 @@ const SignUpComponent = ({ toggleForm }) => {
       type="text"
       value={username}
       onChange={(e) => setUsername(e.target.value)}
+      onBlur={validateUsername}
       placeholder="Choose a username"
       required
       className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
     />
   </div>
+  {usernameError && (
+              <div className="text-sm text-red-500 mt-1">
+                {usernameError}
+              </div>
+            )}
+
 
   {/* Email Input */}
   <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
@@ -85,26 +131,44 @@ const SignUpComponent = ({ toggleForm }) => {
   <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
     <img src={password ? passwordBlue : passwordBlack} alt="Password Icon" className="w-5 h-5 ml-3" />
     <input
-      type="password"
+      type={showPassword ? 'text' : 'password'}
       value={password}
       onChange={(e) => setPassword(e.target.value)}
+      onBlur={validatePassword}
       placeholder="Enter your password"
       required
       className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
     />
+     <button type="button" onClick={() => togglePasswordVisibility(setShowPassword)} className="mr-3">
+                {showPassword ? 
+                  <img src={Eyeo} className="w-5 h-5" alt="Hide password" /> : 
+                  <img src={Eyec} className="w-5 h-5" alt="Show password" />}
+              </button>
   </div>
+  {passwordError && (
+              <div className="text-sm text-red-500 mt-1">
+                {passwordError}
+              </div>
+            )}
+
 
   {/* Confirm Password Input */}
   <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-black">
     <img src={confirmPassword ? passwordBlue : passwordBlack} alt="Confirm Password Icon" className="w-5 h-5 ml-3" />
     <input
-      type="password"
+      type={showConfirmPassword ? 'text' : 'password'}
       value={confirmPassword}
       onChange={(e) => setConfirmPassword(e.target.value)}
+      onBlur={validateConfirmPassword}
       placeholder="Confirm your password"
       required
       className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-lg"
     />
+     <button type="button" onClick={() => togglePasswordVisibility(setShowConfirmPassword)} className="mr-3">
+                {showConfirmPassword ? 
+                  <img src={Eyeo} className="w-5 h-5" alt="Hide password" /> : 
+                  <img src={Eyec} className="w-5 h-5" alt="Show password" />}
+              </button>
   </div>
 </div>
 

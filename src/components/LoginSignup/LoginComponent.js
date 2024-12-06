@@ -6,13 +6,23 @@ import emailBlack from '../../images/email-black.svg';
 import emailBlue from '../../images/email-blue.svg'; 
 import passwordBlack from '../../images/password-black.svg';
 import passwordBlue from '../../images/password-blue.svg';
+import Eyeo from '../../images/blueeye.svg';
+import Eyec from '../../images/blackeye.svg';
 import Cookies from 'js-cookie';
 
 const LoginComponent = ({ toggleForm }) => {
   const [email, setEmail] = useState("ac@gmail.com");
   const [password, setPassword] = useState("acac");
   const [error, setError] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -72,13 +82,22 @@ const LoginComponent = ({ toggleForm }) => {
     className="w-5 h-5 ml-3"
   />
   <input
-    type="password"
+    type={showPassword ? 'text' : 'password'}
     value={password}
     onChange={(e) => setPassword(e.target.value)}
     placeholder="Enter your password"
     required
     className="flex-1 pl-3 py-2 pr-4 focus:outline-none rounded-xl"
   />
+   <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="mr-3"
+            >
+              {showPassword ? 
+                <img src={Eyeo} className="w-5 h-5" alt="Hide password" /> : 
+                <img src={Eyec} className="w-5 h-5" alt="Show password" />}
+            </button>
 </div>
 
           {error && (

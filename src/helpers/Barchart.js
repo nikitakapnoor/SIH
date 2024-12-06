@@ -11,10 +11,10 @@ const BarChart = ({ data }) => {
       {
         label: 'Vulnerabilities',
         data: [
-          data.Low || 3,
-          data.Medium || 5,
-          data.High || 1,
-          data.Critical || 4
+          data.Low || 0,
+          data.Medium || 0,
+          data.High || 0,
+          data.Critical || 0
         ],
         backgroundColor: [
           'rgba(75, 192, 192, 0.2)',
